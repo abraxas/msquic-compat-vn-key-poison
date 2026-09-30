@@ -50,7 +50,7 @@ docker compose exec -T lab python3 /lab/poc.py | tee poc-last-run.txt
 rc=${PIPESTATUS[0]}
 set -e
 if [[ "${rc}" != 0 ]]; then
-  if ! tail -n1 poc-last-run.txt 2>/dev/null | grep -q '^FAIL '; then
+  if ! tail -n1 poc-last-run.txt 2>/dev/null | grep -q 'FAIL MSQUIC'; then
     echo "FAIL MSQUIC-COMPAT-VN-KEY-POISON poc exit=${rc}" >> poc-last-run.txt
   fi
 fi
